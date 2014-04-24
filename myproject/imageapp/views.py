@@ -29,3 +29,20 @@ def list(request):
         {'document': document, 'form': form},
         context_instance=RequestContext(request)
     )
+
+def thumbnails(request):
+    # Load documents for the list page
+    documents = Document.objects.order_by('pk').reverse()
+
+    # Render list page with the documents and the form
+    return render_to_response(
+        'imageapp/thumbnails.html',
+        {'documents': documents}
+    )
+
+def details(request, doc_id):
+    try:
+        doc = Document.objects.get(pk=doc_id)
+    except Document.DoesNotExist:
+        raise Http404
+    return render_to_response('imageapp/details.html', {'doc': doc})

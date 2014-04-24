@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Image Application</title>	
+	</head>
+
+	<body>
+		<!-- List of uploaded documents -->
+		{% if documents %}
+			{% for document in documents %}
+				<a href={% url "details" document.id %}>
+				<img src="{{ document.docfile.url }}" 
+				     height="100" 
+                                     width="100">
+				</a>
+			{% endfor  %}
+		{% else %}
+			<p>No images.</p>
+		{% endif %}
+		
+	</body>
+
+</html> 

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -6,12 +7,17 @@
 	</head>
 
 	<body>
+	    <div>
 		<!-- List of uploaded documents -->
 		{% if document %}
+			<a href={% url "details" document.id %}>
 			<img src="{{ document.docfile.url }}">
+			</a>
 		{% else %}
 			<p>No documents.</p>
 		{% endif %}
+
+		<h2><a href= {% url "thumbnails"  %}>View Thumbnails </a></h2>
 
 		<!-- Upload form. Note enctype attribute! -->
 		<form action="{% url "list" %}" method="post" enctype="multipart/form-data">
@@ -24,7 +30,7 @@
 			</p>
 			<p><input type="submit" value="Upload" /></p>
 		</form>
-		
+	    </div>
 	</body>
 
 </html> 
